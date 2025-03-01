@@ -1,0 +1,18 @@
+<!-- filepath: /Users/pyinv/Dev/DocSharing/share/templates/upload_file.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajout de fichier</title>
+</head>
+<body>
+    <h1>Télécharger un fichier</h1>
+
+    <form method="post" action="{% url 'upload_file' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Télécharger</button>
+    </form>
+</body>
+</html>

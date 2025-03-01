@@ -1,0 +1,16 @@
+<!-- filepath: /Users/pyinv/Dev/DocSharing/share/templates/file_delete.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppression de fichier</title>
+</head>
+<body>
+    <h1>Supprimer {{ document.title }}</h1>
+    <form method="post" action="{% url 'file_delete' document.id %}">
+        {% csrf_token %}
+        <button type="submit">Confirmer la Suppression</button>
+    </form>
+</body>
+</html>
