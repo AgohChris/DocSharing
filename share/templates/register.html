@@ -1,17 +1,27 @@
-<!-- filepath: /Users/pyinv/Dev/DocSharing/share/templates/register.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/register.css' %}">
     <title>Inscription</title>
 </head>
 <body>
-    <h1>Inscription</h1>
-    <form method="post" action="{% url 'register' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">S'inscrire</button>
-    </form>
+    <div class="container">
+        <div class="container">
+            <div class="form">
+                <form method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <h1>Inscription</h1>
+                    {{ form.as_p }}    
+                    <button type="submit">S'inscrire</button>
+                </form>
+                <p class="link">Déjà inscrit ? <a href="{% url 'login' %}">Se connecter</a></p>
+            </div>
+        </div>      
+    </div>
+   
 </body>
 </html>

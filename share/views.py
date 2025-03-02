@@ -3,10 +3,11 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Document, UserProfile
-from .forms import DocumentForm
+from .forms import DocumentForm, UserProfileForm
 
 def home(request):
     return render(request, 'home.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -17,6 +18,8 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
+
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -31,7 +34,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 @login_required
 def upload_file(request):
@@ -67,4 +70,13 @@ def file_delete(request, id):
 
 @login_required
 def userProfile(request):
-    userprofile = UserProfile
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    if request.method == "POST":
+        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        if form.is_valid():
+           form.save()
+           return redirect('home')
+    else:
+        form = UserProfileForm(instance=user_profile)
+    return render(request, 'user_profile.html', {'form': form})
+

@@ -8,6 +8,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_picture/', null=True, blank=True)
     profession = models.CharField(max_length=80)
+    # password = models.CharField(max_length=16)
     email = models.EmailField(max_length=255, unique=True)
     
     
