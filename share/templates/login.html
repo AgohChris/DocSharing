@@ -29,7 +29,12 @@
                 <input type="password" name="password" required>
                 <button type="submit">Se connecter</button>
             </form>
-            <p class="link">Pas encore inscrit ? <a href="{% url 'register' %}">S'inscrire</a></p>
+            <div style="display: flex;">
+
+                <p class="link">Pas encore inscrit ? <a href="{% url 'register' %}">S'inscrire</a></p>
+                <p class="link">Mot de passe oublier? <a href="{% url 'password_reset_email' %}">Reset</a></p>
+
+            </div>
         </div>
     </div>
     
