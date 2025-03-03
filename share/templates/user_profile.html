@@ -8,10 +8,13 @@
 <body>
     <h1>Profile</h1>
 
-    <form method="post" action="{% url 'user_profile' %}">
+    <form method="post" action="{% url 'user_profile' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Modifier</button>
+        <button>
+            <a href="{% url 'home' %}">retour</a>
+        </button>
     </form>
 
 </body>

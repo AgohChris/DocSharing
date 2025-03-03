@@ -8,11 +8,20 @@
 </head>
 <body>
     <h1>Bienvenue sur Doc Sharing {{user.username}}</h1>
-    <p>
-        <a href="{% url 'logout_view' %}">Déconnexion</a>
-        <a href="{% url 'upload_file' %}">Enregistrer un fichier</a>
-        <a href="{% url 'user_profile' %}">Profile</a>
-    </p>
+    <ul>
+        <li>
+            <a href="{% url 'logout_view' %}">Déconnexion</a>
+        </li> <br>
+        <li>
+            <a href="{% url 'upload_file' %}">Enregistrer un fichier</a>
+        </li> <br>
+        <li>
+            <a href="{% url 'user_profile' %}">Profile</a>
+        </li> <br>
+        <li>
+            <a href="{% url 'file_list' %}">Mes fichiers Partagés</a>
+        </li>
+    </ul>
 
 
 
