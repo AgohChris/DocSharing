@@ -11,9 +11,10 @@ import random as rd
 
 
 
-@login_required
+# @login_required
 def home(request):
-    return render(request, 'home.html')
+    documents = Document.objects.all()
+    return render(request, 'home.html', {'documents': documents})
 
 
 
@@ -28,7 +29,6 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 
-@login_required
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)

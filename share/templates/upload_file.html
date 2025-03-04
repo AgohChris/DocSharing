@@ -1,18 +1,40 @@
-<!-- filepath: /Users/pyinv/Dev/DocSharing/share/templates/upload_file.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajout de fichier</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/upload_file.css' %}">
 </head>
 <body>
-    <h1>Télécharger un fichier</h1>
+    <div class="container">
+        <h1>Télécharger un fichier</h1>
 
-    <form method="post" action="{% url 'upload_file' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Télécharger</button>
-    </form>
+        <form method="post" action="{% url 'upload_file' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <label for="id_file">Choisir un fichier</label>
+            <button type="submit">Upload</button>
+        </form>
+
+        <div class="file-preview"></div>
+    </div>
+    <script src="{% static 'js/upload_file.js' %}"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

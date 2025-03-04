@@ -7,9 +7,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home', views.home, name='home'),
+    path('', views.home, name='home'),
     path('register/', views.register, name='register'),
-    path('', views.login_view, name='login'),
+    path('login', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout_view'),
     path('upload/', views.upload_file, name='upload_file'),    
     path('files/', views.file_list, name='file_list'),
@@ -20,8 +20,10 @@ urlpatterns = [
     
     path('password_reset_email/', views.password_reset_email, name='password_reset_email'),
     path('password_reset_code/', views.password_reset_code, name='password_reset_code'),
-    path('password_reset_new_password/', views.password_reset_new_password, name='password_reset_new_password'),   
-]
+    path('password_reset_new_password/', views.password_reset_new_password, name='password_reset_new_password'),
+       
+] 
 
 if settings.DEBUG:
+    
     urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

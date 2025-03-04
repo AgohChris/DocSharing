@@ -20,6 +20,7 @@ class Document(models.Model):
     title =models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     file = models.FileField(upload_to='documents/')
+    cover_image = models.ImageField(upload_to='couvertur_image', null=True, blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
     

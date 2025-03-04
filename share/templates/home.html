@@ -5,25 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <h1>Bienvenue sur Doc Sharing {{user.username}}</h1>
-    <ul>
-        <li>
-            <a href="{% url 'logout_view' %}">Déconnexion</a>
-        </li> <br>
-        <li>
-            <a href="{% url 'upload_file' %}">Enregistrer un fichier</a>
-        </li> <br>
-        <li>
-            <a href="{% url 'user_profile' %}">Profile</a>
-        </li> <br>
-        <li>
-            <a href="{% url 'file_list' %}">Mes fichiers Partagés</a>
-        </li>
-    </ul>
+
+    <nav>
+                <div class="logo">
+                <img src="assets/Logo64x64.png" alt="logo" />
+                <h1>LOGO</h1>
+                </div>
+                
+                <ul>
+                            
+                        <li>
+                            <a href="{% url 'home' %}">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'user_profile' %}">Profile</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'upload_file' %}">Partager</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'file_list' %}">Mes Docs</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'login' %}">Déconnexion</a>
+                        </li>
+
+                </ul>
+                
+        
+                <div class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+      </nav>
+
+      <div class="menubar">
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'user_profile' %}">Profile</a>
+                </li>
+                
+                <li>
+                    <a href="{% url 'upload_file' %}">Partager</a>
+                </li>
+                
+                <li>
+                    <a href="{% url 'file_list' %}">Contact Us</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'login' %}">Déconnexion</a>
+                </li>
+            </ul>
+      </div>
+  
 
 
-
+    <div class="container">
+        <h1>Bienvenue sur Doc Sharing, {{ user.username }}</h1>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Rechercher des documents...">
+        </div>
+        <div class="document-list">
+            {% for document in documents %}
+            <div class="document-card">
+                <img src="{% if document.cover_image %}{{ document.cover_image.url }}{% else %}{% static 'images/default_cover.png' %}{% endif %}" alt="Cover Image">
+                <h3>{{ document.title }}</h3>
+                <p>Partagé par {{ document.uploaded_by.username }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="{% static 'js/home.js' %}"></script>
 </body>
 </html>

@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
 </head>
 <body>
-    <h1>Profile</h1>
+    <div class="container">
+        <h1>Profile</h1>
 
-    <form method="post" action="{% url 'user_profile' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Modifier</button>
-        <button>
-            <a href="{% url 'home' %}">retour</a>
-        </button>
-    </form>
+        <div class="profile-picture">
+            <img id="profile-picture-preview" src="{% if user.userprofile.profile_picture %}{{ user.userprofile.profile_picture.url }}{% else %}{% static 'images/default_profile_picture.png' %}{% endif %}" alt="Profile Picture">
+        </div>
 
+        <form method="post" action="{% url 'user_profile' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Modifier</button>
+            <button>
+                <a href="{% url 'home' %}">retour</a>
+            </button>
+        </form>
+    </div>
+    <script src="{% static 'js/user_profile.js' %}"></script>
 </body>
 </html>
